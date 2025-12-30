@@ -229,6 +229,7 @@ func linkPressed():
 	print("SHEES")
 
 func validateLink(link:String):
+	if link == "": return false
 	link = getFormattedLink(link)
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
