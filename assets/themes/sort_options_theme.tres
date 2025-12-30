@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://nbjawelvsnsy"]
+
+[ext_resource type="Texture2D" uid="uid://1usaeqvpdeui" path="res://assets/label_rect.png" id="1_1o1n7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5jhcv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1o1n7"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5jhcv"]
+bg_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+
+[resource]
+OptionButton/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+OptionButton/colors/font_focus_color = Color(0.18039216, 0.2, 0.20392157, 1)
+OptionButton/colors/font_hover_color = Color(0.18039216, 0.2, 0.20392157, 1)
+OptionButton/colors/font_hover_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+OptionButton/colors/font_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+OptionButton/font_sizes/font_size = 48
+OptionButton/styles/focus = SubResource("StyleBoxEmpty_5jhcv")
+OptionButton/styles/hover = SubResource("StyleBoxFlat_1o1n7")
+OptionButton/styles/hover_pressed = SubResource("StyleBoxFlat_1o1n7")
+OptionButton/styles/normal = SubResource("StyleBoxFlat_1o1n7")
+OptionButton/styles/pressed = SubResource("StyleBoxFlat_1o1n7")
+PopupMenu/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+PopupMenu/colors/font_hover_color = Color(0.18039216, 0.2, 0.20392157, 1)
+PopupMenu/font_sizes/font_size = 32
+PopupMenu/icons/radio_unchecked = ExtResource("1_1o1n7")
+PopupMenu/icons/unchecked = ExtResource("1_1o1n7")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_5jhcv")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_5jhcv")

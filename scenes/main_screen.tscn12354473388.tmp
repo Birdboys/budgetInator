@@ -1,0 +1,233 @@
+[gd_scene load_steps=13 format=3 uid="uid://dwxytc7an8a3e"]
+
+[ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/budget_theme.tres" id="1_7fvvs"]
+[ext_resource type="Script" uid="uid://j6ej6nxijbfn" path="res://scripts/main_screen.gd" id="2_kusfh"]
+[ext_resource type="Texture2D" uid="uid://x78srh8e67pf" path="res://assets/plus.png" id="3_23dc1"]
+[ext_resource type="Script" uid="uid://cls2yyysyfxd1" path="res://scripts/add_item_screen.gd" id="3_il54y"]
+[ext_resource type="Script" uid="uid://2myeose55uyq" path="res://scripts/cart_screen.gd" id="4_4takm"]
+[ext_resource type="ButtonGroup" uid="uid://6kutr7eqtrrp" path="res://assets/bottom_buttons.tres" id="4_il54y"]
+[ext_resource type="Texture2D" uid="uid://cmoaa0tjlneo" path="res://assets/shopping_cart.png" id="5_4takm"]
+[ext_resource type="PackedScene" uid="uid://np3k2ooomwog" path="res://scenes/item_panel.tscn" id="5_pn685"]
+[ext_resource type="Texture2D" uid="uid://6ouiml3urots" path="res://assets/tab.png" id="6_pn685"]
+[ext_resource type="Texture2D" uid="uid://dqw7otqw8krx5" path="res://assets/check.png" id="7_u38ol"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_23dc1"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amnco"]
+
+[node name="mainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7fvvs")
+script = ExtResource("2_kusfh")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"bg"
+
+[node name="vBox" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="addItemScreen" type="MarginContainer" parent="vBox"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/margin_top = 16
+script = ExtResource("3_il54y")
+
+[node name="addVbox" type="VBoxContainer" parent="vBox/addItemScreen"]
+layout_mode = 2
+
+[node name="titleLabel" type="Label" parent="vBox/addItemScreen/addVbox"]
+layout_mode = 2
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 96
+text = "ADD NEW ITEM"
+horizontal_alignment = 1
+
+[node name="separator" type="HSeparator" parent="vBox/addItemScreen/addVbox"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_23dc1")
+
+[node name="dataMargin" type="MarginContainer" parent="vBox/addItemScreen/addVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="dataVbox" type="VBoxContainer" parent="vBox/addItemScreen/addVbox/dataMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 64
+
+[node name="nameData" type="LineEdit" parent="vBox/addItemScreen/addVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_type_variation = &"dataEntry"
+placeholder_text = "Enter item name"
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="priceData" type="LineEdit" parent="vBox/addItemScreen/addVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_type_variation = &"dataEntry"
+placeholder_text = "Enter price"
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="labelOptions" type="OptionButton" parent="vBox/addItemScreen/addVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_type_variation = &"labelEntry"
+selected = 0
+item_count = 5
+popup/item_0/text = "No Label"
+popup/item_0/id = 0
+popup/item_1/text = "Cum in my ass"
+popup/item_1/id = 2
+popup/item_2/text = "dsadas"
+popup/item_2/id = 3
+popup/item_3/text = "dsadsadsa"
+popup/item_3/id = 4
+popup/item_4/text = "dsdsdsdsaaa"
+popup/item_4/id = 9
+
+[node name="labelRect" type="ColorRect" parent="vBox/addItemScreen/addVbox/dataMargin/dataVbox/labelOptions"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(6, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="linkData" type="LineEdit" parent="vBox/addItemScreen/addVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_type_variation = &"dataEntry"
+placeholder_text = "Enter link"
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="submitButton" type="Button" parent="vBox/addItemScreen/addVbox"]
+layout_mode = 2
+theme_type_variation = &"submitButton"
+text = "SUBMIT ITEM"
+
+[node name="cartScreen" type="MarginContainer" parent="vBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme_override_constants/margin_top = 16
+script = ExtResource("4_4takm")
+
+[node name="cartScroll" type="ScrollContainer" parent="vBox/cartScreen"]
+layout_mode = 2
+
+[node name="cartBox" type="VBoxContainer" parent="vBox/cartScreen/cartScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="itemPanel" parent="vBox/cartScreen/cartScroll/cartBox" instance=ExtResource("5_pn685")]
+layout_mode = 2
+
+[node name="addMargin" type="MarginContainer" parent="vBox/cartScreen"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="addButton" type="TextureButton" parent="vBox/cartScreen/addMargin"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+self_modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_23dc1")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="bottomPanel" type="Panel" parent="vBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_amnco")
+
+[node name="bgHbox" type="HBoxContainer" parent="vBox/bottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="cartPanel" type="Panel" parent="vBox/bottomPanel/bgHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"pressed"
+
+[node name="labelsPanel" type="Panel" parent="vBox/bottomPanel/bgHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"empty"
+
+[node name="finishedPanel" type="Panel" parent="vBox/bottomPanel/bgHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"empty"
+
+[node name="buttonHbox" type="HBoxContainer" parent="vBox/bottomPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="cartButton" type="TextureButton" parent="vBox/bottomPanel/buttonHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("4_il54y")
+texture_normal = ExtResource("5_4takm")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="labelsButton" type="TextureButton" parent="vBox/bottomPanel/buttonHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("4_il54y")
+texture_normal = ExtResource("6_pn685")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="finishedButton" type="TextureButton" parent="vBox/bottomPanel/buttonHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("4_il54y")
+texture_normal = ExtResource("7_u38ol")
+ignore_texture_size = true
+stretch_mode = 5

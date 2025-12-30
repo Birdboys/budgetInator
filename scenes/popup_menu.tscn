@@ -1,0 +1,89 @@
+[gd_scene load_steps=7 format=3 uid="uid://caugk0f77ukxm"]
+
+[ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_1s2af"]
+[ext_resource type="Script" uid="uid://dvyvfy8q3qhvd" path="res://scripts/popup_menu.gd" id="1_pstsw"]
+[ext_resource type="Texture2D" uid="uid://dqw7otqw8krx5" path="res://assets/check.png" id="2_lhx56"]
+[ext_resource type="Texture2D" uid="uid://dpbd4uvrjrj6g" path="res://assets/cancel.png" id="4_35uia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s2af"]
+bg_color = Color(0.18039216, 0.2, 0.20392157, 0.5019608)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7cvyo"]
+bg_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+border_width_left = 16
+border_width_top = 16
+border_width_right = 16
+border_width_bottom = 16
+border_color = Color(0.8, 0.7294118, 0.60784316, 1)
+
+[node name="popupMenu" type="CanvasLayer"]
+script = ExtResource("1_pstsw")
+
+[node name="popupBG" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_1s2af")
+
+[node name="popupPanel" type="Panel" parent="."]
+custom_minimum_size = Vector2(360, 390)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -195.0
+offset_right = 180.0
+offset_bottom = 195.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_1s2af")
+theme_override_styles/panel = SubResource("StyleBoxFlat_7cvyo")
+
+[node name="popupMargin" type="MarginContainer" parent="popupPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="popupVbox" type="VBoxContainer" parent="popupPanel/popupMargin"]
+layout_mode = 2
+
+[node name="popupLabel" type="Label" parent="popupPanel/popupMargin/popupVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"nameLabel"
+text = "ARE YOU
+SURE"
+horizontal_alignment = 1
+
+[node name="popupButtons" type="HBoxContainer" parent="popupPanel/popupMargin/popupVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="yesButton" type="TextureButton" parent="popupPanel/popupMargin/popupVbox/popupButtons"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("2_lhx56")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="noButton" type="TextureButton" parent="popupPanel/popupMargin/popupVbox/popupButtons"]
+modulate = Color(0.6117647, 0.28235295, 0.15294118, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("4_35uia")
+ignore_texture_size = true
+stretch_mode = 5

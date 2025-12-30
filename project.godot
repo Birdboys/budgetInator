@@ -1,0 +1,42 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="budgetInator"
+run/main_scene="uid://dwxytc7an8a3e"
+config/features=PackedStringArray("4.5", "Mobile")
+boot_splash/bg_color=Color(0.9254902, 0.8745098, 0.7490196, 1)
+boot_splash/use_filter=false
+boot_splash/image="uid://ctlcybl8nscxd"
+config/icon="uid://ctlcybl8nscxd"
+
+[autoload]
+
+DataHandler="*res://scripts/data_handler.gd"
+YesOrNo="*res://scenes/popup_menu.tscn"
+
+[display]
+
+window/size/viewport_width=540
+window/size/viewport_height=1170
+window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
+
+[gui]
+
+theme/custom_font="uid://v21m0pivwep7"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true

@@ -1,0 +1,76 @@
+[gd_scene load_steps=7 format=3 uid="uid://np3k2ooomwog"]
+
+[ext_resource type="Script" uid="uid://d2kufe1vcsghh" path="res://scripts/item_panel.gd" id="1_7gh1m"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_7gh1m"]
+color = Color(0, 0, 0, 0)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7gh1m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rf2vg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_12h55"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ll870"]
+
+[node name="itemPanel" type="Panel"]
+custom_minimum_size = Vector2(0, 128)
+mouse_filter = 1
+theme_type_variation = &"pressed"
+script = ExtResource("1_7gh1m")
+
+[node name="itemHBox" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="frontSeparator" type="VSeparator" parent="itemHBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxLine_7gh1m")
+
+[node name="nameLabel" type="Label" parent="itemHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 3.0
+theme_type_variation = &"nameLabel"
+text = "Zinogre Legos"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="priceLabel" type="Label" parent="itemHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"priceLabel"
+text = "$1150"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="tagSeparator" type="VSeparator" parent="itemHBox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+theme_override_styles/separator = SubResource("StyleBoxLine_7gh1m")
+
+[node name="tagRect" type="ColorRect" parent="itemHBox"]
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 2
+
+[node name="itemButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7gh1m")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_rf2vg")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_12h55")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ll870")
+flat = true

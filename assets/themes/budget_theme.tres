@@ -1,0 +1,164 @@
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://cer08boju3mso"]
+
+[ext_resource type="Texture2D" uid="uid://1usaeqvpdeui" path="res://assets/label_rect.png" id="1_uvju4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_imsni"]
+bg_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tbj3o"]
+bg_color = Color(0.8, 0.7294118, 0.60784316, 1)
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_tndkj"]
+color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+thickness = 8
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_imsni"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbj3o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i7ju5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_de6ms"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4qv1b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yjtpe"]
+bg_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_57aav"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4qv1b"]
+bg_color = Color(0.6117647, 0.28235295, 0.15294118, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aohuo"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.8, 0.7294118, 0.60784316, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yjtpe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7nx6r"]
+content_margin_left = 16.0
+content_margin_right = 16.0
+bg_color = Color(0.8, 0.7294118, 0.60784316, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uvju4"]
+content_margin_left = 8.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tndkj"]
+content_margin_left = 8.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tndkj"]
+bg_color = Color(0.8, 0.7294118, 0.60784316, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aohuo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7nx6r"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_de6ms"]
+bg_color = Color(0.6117647, 0.28235295, 0.15294118, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lxn0j"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i7ju5"]
+bg_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+
+[resource]
+PopupMenu/colors/font_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+PopupMenu/colors/font_hover_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+PopupMenu/colors/font_separator_color = Color(0.99999994, 0.7990828, 0.9878184, 1)
+PopupMenu/colors/title_color = Color(0.7254902, 0, 0, 1)
+PopupMenu/constants/h_separation = 0
+PopupMenu/constants/item_start_padding = 8
+PopupMenu/constants/v_separation = 8
+PopupMenu/font_sizes/font_size = 36
+PopupMenu/icons/radio_checked = ExtResource("1_uvju4")
+PopupMenu/icons/radio_unchecked = ExtResource("1_uvju4")
+PopupMenu/icons/unchecked = ExtResource("1_uvju4")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_imsni")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_tbj3o")
+PopupMenu/styles/separator = SubResource("StyleBoxLine_tndkj")
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_imsni")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_tbj3o")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_i7ju5")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_de6ms")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_4qv1b")
+bg/base_type = &"Panel"
+bg/styles/panel = SubResource("StyleBoxFlat_yjtpe")
+cancelButton/base_type = &"Button"
+cancelButton/colors/font_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+cancelButton/colors/font_focus_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+cancelButton/colors/font_hover_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+cancelButton/colors/font_pressed_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+cancelButton/font_sizes/font_size = 72
+cancelButton/styles/focus = SubResource("StyleBoxEmpty_57aav")
+cancelButton/styles/hover = SubResource("StyleBoxFlat_4qv1b")
+cancelButton/styles/hover_pressed = SubResource("StyleBoxFlat_4qv1b")
+cancelButton/styles/normal = SubResource("StyleBoxFlat_4qv1b")
+cancelButton/styles/pressed = SubResource("StyleBoxFlat_4qv1b")
+dataEntry/base_type = &"LineEdit"
+dataEntry/colors/caret_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+dataEntry/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+dataEntry/colors/font_placeholder_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+dataEntry/colors/font_selected_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+dataEntry/colors/selection_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+dataEntry/constants/caret_width = 2
+dataEntry/font_sizes/font_size = 72
+dataEntry/styles/focus = SubResource("StyleBoxFlat_aohuo")
+dataEntry/styles/normal = SubResource("StyleBoxFlat_aohuo")
+dataEntry/styles/read_only = SubResource("StyleBoxFlat_aohuo")
+empty/base_type = &"Panel"
+empty/styles/panel = SubResource("StyleBoxEmpty_yjtpe")
+labelEntry/base_type = &"OptionButton"
+labelEntry/colors/font_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+labelEntry/colors/font_focus_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+labelEntry/colors/font_hover_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+labelEntry/colors/font_hover_pressed_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+labelEntry/colors/font_pressed_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+labelEntry/font_sizes/font_size = 72
+labelEntry/styles/focus = SubResource("StyleBoxFlat_7nx6r")
+labelEntry/styles/hover = SubResource("StyleBoxFlat_7nx6r")
+labelEntry/styles/normal = SubResource("StyleBoxFlat_7nx6r")
+labelEntry/styles/pressed = SubResource("StyleBoxFlat_7nx6r")
+labelOptions/base_type = &"PopupMenu"
+labelOptions/font_sizes/font_size = 72
+linkButton/base_type = &"Button"
+linkButton/colors/font_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+linkButton/colors/font_disabled_color = Color(0.08627451, 0.078431375, 0.07058824, 1)
+linkButton/colors/font_focus_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+linkButton/colors/font_hover_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+linkButton/colors/font_hover_pressed_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+linkButton/colors/font_pressed_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
+linkButton/font_sizes/font_size = 72
+linkButton/styles/disabled = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/focus = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/hover = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/hover_mirrored = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/hover_pressed = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/normal = SubResource("StyleBoxEmpty_uvju4")
+linkButton/styles/pressed = SubResource("StyleBoxEmpty_uvju4")
+nameLabel/base_type = &"Label"
+nameLabel/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+nameLabel/font_sizes/font_size = 72
+nameLabel/styles/focus = SubResource("StyleBoxEmpty_tndkj")
+nameLabel/styles/normal = SubResource("StyleBoxEmpty_tndkj")
+pressed/base_type = &"Panel"
+pressed/styles/panel = SubResource("StyleBoxFlat_tndkj")
+priceLabel/base_type = &"Label"
+priceLabel/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+priceLabel/font_sizes/font_size = 72
+priceLabel/styles/focus = SubResource("StyleBoxEmpty_aohuo")
+priceLabel/styles/normal = SubResource("StyleBoxEmpty_7nx6r")
+sortEntry/base_type = &"OptionButton"
+submitButton/base_type = &"Button"
+submitButton/colors/font_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+submitButton/colors/font_disabled_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+submitButton/colors/font_focus_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+submitButton/colors/font_hover_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+submitButton/colors/font_pressed_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+submitButton/font_sizes/font_size = 72
+submitButton/styles/disabled = SubResource("StyleBoxFlat_de6ms")
+submitButton/styles/focus = SubResource("StyleBoxEmpty_lxn0j")
+submitButton/styles/hover = SubResource("StyleBoxFlat_i7ju5")
+submitButton/styles/normal = SubResource("StyleBoxFlat_i7ju5")
+submitButton/styles/pressed = SubResource("StyleBoxFlat_i7ju5")
