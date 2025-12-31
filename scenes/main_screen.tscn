@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://dwxytc7an8a3e"]
+[gd_scene load_steps=28 format=3 uid="uid://dwxytc7an8a3e"]
 
 [ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_7fvvs"]
 [ext_resource type="Script" uid="uid://j6ej6nxijbfn" path="res://scripts/main_screen.gd" id="2_kusfh"]
@@ -30,6 +30,8 @@ bg_color = Color(0.8, 0.7294118, 0.60784316, 1)
 border_width_left = 16
 border_width_right = 16
 border_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6lq5t"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihpp7"]
 
@@ -66,6 +68,7 @@ grow_vertical = 2
 theme_override_constants/separation = 16
 
 [node name="addItemScreen" type="MarginContainer" parent="vBox"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
@@ -278,6 +281,7 @@ theme_override_constants/margin_bottom = 32
 
 [node name="optionsVbox" type="VBoxContainer" parent="vBox/cartScreen/cartVbox/optionsPanel/optionsMargins"]
 layout_mode = 2
+theme_override_constants/separation = 0
 
 [node name="sortLabel" type="Label" parent="vBox/cartScreen/cartVbox/optionsPanel/optionsMargins/optionsVbox"]
 layout_mode = 2
@@ -381,6 +385,18 @@ theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="resetButton" type="Button" parent="vBox/cartScreen/cartVbox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_focus_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6lq5t")
+text = "RESET ALL DATA"
+flat = true
+
 [node name="addMargin" type="MarginContainer" parent="vBox/cartScreen"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
@@ -448,7 +464,6 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="purchasedScreen" type="MarginContainer" parent="vBox"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
@@ -473,6 +488,150 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
+
+[node name="loadOptionsButton" type="TextureButton" parent="vBox/purchasedScreen/purchVbox"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"submitButton"
+texture_normal = ExtResource("6_rjk0d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="optionsPanel" type="Panel" parent="vBox/purchasedScreen/purchVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjk0d")
+
+[node name="optionsMargins" type="MarginContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="optionsVbox" type="VBoxContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="sortLabel" type="Label" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+text = "SORT BY"
+horizontal_alignment = 1
+
+[node name="optionsDropdown" type="OptionButton" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme = ExtResource("7_c7dat")
+selected = 0
+item_count = 5
+popup/item_0/text = "DATE PURCHASED"
+popup/item_0/id = 0
+popup/item_1/text = "DATE ADDED"
+popup/item_1/id = 1
+popup/item_2/text = "PRICE"
+popup/item_2/id = 2
+popup/item_3/text = "NAME"
+popup/item_3/id = 3
+popup/item_4/text = "TAG"
+popup/item_4/id = 4
+
+[node name="orderMargins" type="MarginContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme = ExtResource("1_7fvvs")
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="orderHbox" type="HBoxContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/orderMargins"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ascending" type="TextureButton" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("8_ihpp7")
+texture_normal = ExtResource("8_3qgpa")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="descending" type="TextureButton" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox"]
+modulate = Color(0.9254902, 0.8745098, 0.7490196, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("8_ihpp7")
+texture_normal = ExtResource("8_3qgpa")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
+
+[node name="textHbox" type="HBoxContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="itemsHbox" type="VBoxContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="itemsLabel" type="Label" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/itemsHbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+text = "TOTAL ITEMS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="totalItemsLabel" type="Label" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/itemsHbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="priceHbox" type="VBoxContainer" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="priceLabel" type="Label" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/priceHbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+text = "TOTAL PRICE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="totalPriceLabel" type="Label" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/priceHbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="resetButton" type="Button" parent="vBox/purchasedScreen/purchVbox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_focus_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6lq5t")
+text = "RESET ALL DATA"
+flat = true
 
 [node name="viewItemScreen" type="MarginContainer" parent="vBox"]
 visible = false
@@ -649,6 +808,11 @@ size_flags_vertical = 10
 texture_normal = ExtResource("11_uxhme")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="resetSpacer" type="Panel" parent="vBox/viewItemScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
 
 [node name="bottomButtons" type="HBoxContainer" parent="vBox/viewItemScreen/viewVbox"]
 layout_mode = 2

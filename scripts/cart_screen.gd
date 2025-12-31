@@ -11,6 +11,7 @@ extends MarginContainer
 @onready var descendingButton := $cartVbox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox/descending
 @onready var totalItemsLabel := $cartVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/itemsHbox/totalItemsLabel
 @onready var totalPriceLabel := $cartVbox/optionsPanel/optionsMargins/optionsVbox/textHbox/priceHbox/totalPriceLabel
+@onready var resetDataButton := $cartVbox/optionsPanel/optionsMargins/optionsVbox/resetButton
 
 var options_open := false
 var sorting_option = 0
@@ -22,6 +23,7 @@ func _ready() -> void:
 	optionsDropdown.item_selected.connect(changeSorting)
 	ascendingButton.pressed.connect(sortAscending)
 	descendingButton.pressed.connect(sortDescending)
+	resetDataButton.pressed.connect(resetPressed)
 	
 func loadMenu():
 	closeOptionsPanel()
@@ -29,7 +31,7 @@ func loadMenu():
 	loadItems(sorting_option, ascending)
 	toggleAscendingButtons()
 	totalItemsLabel.text = DataHandler.getTotalItems()
-	totalPriceLabel.text = "$%s" % DataHandler.getTotalPrice()
+	totalPriceLabel.text = "$%s" % DataHandler.getTotalItemPrice()
 	visible = true
 	
 func closeMenu():
@@ -107,3 +109,10 @@ func toggleAscendingButtons():
 	else:
 		ascendingButton.modulate = Color("ecdfbf")
 		descendingButton.modulate = Color("6d8577")
+
+func resetPressed():
+	YesOrNo.loadMenu()
+	var make_choice = await YesOrNo.choice
+	if not make_choice: return
+	DataHandler.resetAllData()
+	loadMenu()

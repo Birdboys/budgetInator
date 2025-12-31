@@ -15,6 +15,7 @@ extends MarginContainer
 @onready var purchaseButton := $viewVbox/bottomButtons/purchaseButton
 @onready var backButton := $viewVbox/bottomButtons/backButton
 @onready var resetButton := $viewVbox/dataMargin/dataVbox/viewButtons/resetButton
+@onready var resetSpacer := $viewVbox/dataMargin/dataVbox/viewButtons/resetSpacer
 @onready var trashButton := $viewVbox/dataMargin/dataVbox/viewButtons/trashButton
 var original_item_data := {}
 var changes_made := false
@@ -152,8 +153,11 @@ func purchasePressed():
 	purchaseItem()
 
 func purchaseItem():
-	print("MADE PURCHASE")
-	pass
+	var purchased_item_data = original_item_data.duplicate()
+	purchased_item_data['purchase_date'] = Time.get_unix_time_from_system()
+	DataHandler.deleteItem(purchased_item_data['item_name'])
+	DataHandler.addPurchase(purchased_item_data)
+	emit_signal("exit")
 	
 func togglePurchaseUpdate(purchase):
 	purchaseButton.visible = purchase
@@ -164,11 +168,13 @@ func togglePurchaseUpdate(purchase):
 func changeUpdateButton():
 	if changes_made:
 		resetButton.visible = true
+		resetSpacer.visible = false
 		updateButton.disabled = not is_unique
 		
 	else:
 		updateButton.disabled = true
 		resetButton.visible = false
+		resetSpacer.visible = true
 		
 func changePurchaseButton():
 	if one_week_in_cart:
@@ -192,7 +198,7 @@ func loadTimeAdded():
 	showing_date = true
 	
 func loadTimeSince():
-	var current_time = Time.get_unix_time_from_system() + 86400.0 * randi_range(0,14) + 3600.0 * 5
+	var current_time = Time.get_unix_time_from_system() + 90000*7
 	var added_time = float(Time.get_unix_time_from_datetime_dict(Time.get_datetime_dict_from_system(original_item_data['item_date'])))
 	var time_diff = current_time-added_time
 	var days = floori(time_diff/86400.0)
