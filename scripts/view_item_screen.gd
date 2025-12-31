@@ -169,7 +169,7 @@ func changeUpdateButton():
 	if changes_made:
 		resetButton.visible = true
 		resetSpacer.visible = false
-		updateButton.disabled = not is_unique
+		updateButton.disabled = not (is_unique and priceEntry.text != "" and nameEntry.text != "")
 		
 	else:
 		updateButton.disabled = true
