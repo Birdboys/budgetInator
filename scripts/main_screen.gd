@@ -7,6 +7,7 @@ extends Control
 @onready var tagScreen := $vBox/tagScreen
 @onready var viewTagScreen := $vBox/viewTagScreen
 @onready var purchasedScreen := $vBox/purchasedScreen
+@onready var viewPurchaseScreen := $vBox/viewPurchaseScreen
 
 @onready var cartButton := $vBox/bottomPanel/buttonHbox/cartButton
 @onready var tagsButton := $vBox/bottomPanel/buttonHbox/tagsButton
@@ -25,6 +26,7 @@ extends Control
 	"purchased": purchasedScreen,
 	"view_item": viewItemScreen,
 	"view_tag": viewTagScreen,
+	"view_purchase": viewPurchaseScreen,
 }
 var current_screen := ""
 
@@ -33,8 +35,10 @@ func _ready() -> void:
 	addTagScreen.exit.connect(toggleScreen.bind("tags"))
 	viewItemScreen.exit.connect(toggleScreen.bind("cart"))
 	viewTagScreen.exit.connect(toggleScreen.bind("tags"))
+	viewPurchaseScreen.exit.connect(toggleScreen.bind("purchased"))
 	cartScreen.view_item.connect(viewItem)
 	tagScreen.view_tag.connect(viewTag)
+	purchasedScreen.view_purchase.connect(viewPurchase)
 	
 	addItemButton.pressed.connect(toggleScreen.bind("add_item"))
 	addTagButton.pressed.connect(toggleScreen.bind("add_tag"))
@@ -70,3 +74,7 @@ func viewItem(item_id):
 func viewTag(tag_id):
 	toggleScreen("view_tag")
 	viewTagScreen.loadTagData(tag_id)
+
+func viewPurchase(item_id):
+	toggleScreen("view_purchase")
+	viewPurchaseScreen.loadPurchaseData(item_id)

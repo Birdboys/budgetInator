@@ -15,7 +15,7 @@ extends MarginContainer
 var options_open := false
 var sorting_option = 0
 var ascending := true
-signal view_item(item_id)
+signal view_purchase(item_id)
 
 func _ready() -> void:
 	loadOptionsButton.pressed.connect(toggleOptionsPanel)
@@ -57,15 +57,15 @@ func loadItems(sort:=0, asc=true):
 		var new_item = itemPanel.instantiate()
 		purchasedItems.add_child(new_item)
 		new_item.loadItem(DataHandler.purchase_data[item])
-		new_item.item_pressed.connect(viewItem)
+		new_item.item_pressed.connect(viewPurchase)
 	DataHandler.getItemsByPrice()
 	
 func clearItems():
 	for item in purchasedItems.get_children():
 		item.queue_free()
 		
-func viewItem(item_id):
-	emit_signal("view_item", item_id)
+func viewPurchase(item_id):
+	emit_signal("view_purchase", item_id)
 
 func openOptionsPanel():
 	options_open = true

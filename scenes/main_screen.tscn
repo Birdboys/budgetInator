@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://dwxytc7an8a3e"]
+[gd_scene load_steps=29 format=3 uid="uid://dwxytc7an8a3e"]
 
 [ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_7fvvs"]
 [ext_resource type="Script" uid="uid://j6ej6nxijbfn" path="res://scripts/main_screen.gd" id="2_kusfh"]
@@ -20,6 +20,7 @@
 [ext_resource type="Texture2D" uid="uid://bleu62rvpl0mu" path="res://assets/reset.png" id="11_uxhme"]
 [ext_resource type="Texture2D" uid="uid://dcy583if6rqjq" path="res://assets/trash.png" id="11_vikvq"]
 [ext_resource type="Script" uid="uid://3o57a37ehf1e" path="res://scripts/view_tag_screen.gd" id="13_30ndx"]
+[ext_resource type="Script" uid="uid://sp3qdccbn5ed" path="res://scripts/view_purchase_screen.gd" id="18_6lq5t"]
 [ext_resource type="Texture2D" uid="uid://ctowr861pkdci" path="res://assets/list.png" id="21_ihpp7"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_23dc1"]
@@ -464,6 +465,7 @@ ignore_texture_size = true
 stretch_mode = 5
 
 [node name="purchasedScreen" type="MarginContainer" parent="vBox"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
@@ -929,6 +931,213 @@ theme_type_variation = &"submitButton"
 text = "UPDATE"
 
 [node name="backButton" type="Button" parent="vBox/viewTagScreen/viewVbox/bottomButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"submitButton"
+text = "BACK"
+
+[node name="viewPurchaseScreen" type="MarginContainer" parent="vBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+theme = ExtResource("1_7fvvs")
+script = ExtResource("18_6lq5t")
+
+[node name="viewVbox" type="VBoxContainer" parent="vBox/viewPurchaseScreen"]
+layout_mode = 2
+
+[node name="titleLabel" type="Label" parent="vBox/viewPurchaseScreen/viewVbox"]
+layout_mode = 2
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 96
+text = "VIEW ITEM"
+horizontal_alignment = 1
+
+[node name="separator" type="HSeparator" parent="vBox/viewPurchaseScreen/viewVbox"]
+layout_mode = 2
+theme_override_constants/separation = 32
+theme_override_styles/separator = SubResource("StyleBoxLine_23dc1")
+
+[node name="dataMargin" type="MarginContainer" parent="vBox/viewPurchaseScreen/viewVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="dataVbox" type="VBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 48
+
+[node name="nameHbox" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="nameLabel" type="Label" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/nameHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.43
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 72
+text = "NAME"
+
+[node name="nameData" type="LineEdit" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/nameHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"dataEntry"
+placeholder_text = "Enter item name"
+editable = false
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="priceHbox" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="priceLabel" type="Label" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/priceHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.43
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 72
+text = "PRICE"
+
+[node name="priceData" type="LineEdit" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/priceHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"dataEntry"
+placeholder_text = "Enter price"
+editable = false
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="tagOptions" type="OptionButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+theme_type_variation = &"labelEntry"
+
+[node name="tagRect" type="ColorRect" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/tagOptions"]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="linkHbox" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+
+[node name="linkLabel" type="Label" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/linkHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.43
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 72
+text = "LINK"
+
+[node name="linkButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/linkHbox/linkLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.43
+theme_override_colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_focus_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_font_sizes/font_size = 72
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ihpp7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ihpp7")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ihpp7")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_ihpp7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ihpp7")
+disabled = true
+alignment = 0
+
+[node name="linkData" type="LineEdit" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/linkHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"dataEntry"
+placeholder_text = "No link"
+editable = false
+virtual_keyboard_show_on_focus = false
+deselect_on_focus_loss_enabled = false
+
+[node name="timeLabel" type="RichTextLabel" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/default_color = Color(0.18039216, 0.2, 0.20392157, 1)
+theme_override_font_sizes/normal_font_size = 72
+bbcode_enabled = true
+fit_content = true
+horizontal_alignment = 1
+
+[node name="timeButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/timeLabel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_uxhme")
+flat = true
+
+[node name="viewButtons" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
+layout_mode = 2
+alignment = 1
+
+[node name="trashButton" type="TextureButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+texture_normal = ExtResource("11_vikvq")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="resetButton" type="TextureButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+visible = false
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+texture_normal = ExtResource("11_uxhme")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="resetSpacer" type="Panel" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+
+[node name="bottomButtons" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="updateButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/bottomButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"submitButton"
+text = "UPDATE"
+
+[node name="purchaseButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/bottomButtons"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"submitButton"
+text = "PURCHASE"
+
+[node name="backButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/bottomButtons"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"submitButton"

@@ -101,6 +101,7 @@ dataEntry/colors/caret_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
 dataEntry/colors/font_color = Color(0.18039216, 0.2, 0.20392157, 1)
 dataEntry/colors/font_placeholder_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
 dataEntry/colors/font_selected_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
+dataEntry/colors/font_uneditable_color = Color(0.18039216, 0.2, 0.20392157, 1)
 dataEntry/colors/selection_color = Color(0.42745098, 0.52156866, 0.46666667, 1)
 dataEntry/constants/caret_width = 2
 dataEntry/font_sizes/font_size = 72

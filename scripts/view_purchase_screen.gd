@@ -25,18 +25,18 @@ var is_unique := true
 signal exit
 
 func _ready() -> void:
-	nameEntry.text_changed.connect(dataUpdated)
-	priceEntry.text_changed.connect(dataUpdated)
-	linkEntry.text_changed.connect(dataUpdated)
+	#nameEntry.text_changed.connect(dataUpdated)
+	#priceEntry.text_changed.connect(dataUpdated)
+	#linkEntry.text_changed.connect(dataUpdated)
 	tagOptions.item_selected.connect(tagUpdated)
 	
 	linkButton.pressed.connect(linkPressed)
-	updateButton.pressed.connect(updatePressed)
-	purchaseButton.pressed.connect(purchasePressed)
+	#updateButton.pressed.connect(updatePressed)
+	#purchaseButton.pressed.connect(purchasePressed)
 	backButton.pressed.connect(backPressed)
-	resetButton.pressed.connect(resetData)
-	trashButton.pressed.connect(trashPressed)
-	timeButton.pressed.connect(toggleTimeLabel)
+	#resetButton.pressed.connect(resetData)
+	#trashButton.pressed.connect(trashPressed)
+	#timeButton.pressed.connect(toggleTimeLabel)
 	pass
 
 func tagUpdated(tag_id):
@@ -49,6 +49,7 @@ func tagUpdated(tag_id):
 	dataUpdated("")
 	
 func dataUpdated(_text):
+	return
 	if original_item_data == {}: 
 		changes_made = false
 		togglePurchaseUpdate(true)
@@ -108,8 +109,8 @@ func changeTagSelectColor(c):
 	tagOptions.add_theme_color_override("font_pressed_color", c)
 	tagOptions.add_theme_color_override("font_hover_pressed_color", c)
 
-func loadItemData(item_id):
-	original_item_data = DataHandler.item_data[item_id]
+func loadPurchaseData(item_id):
+	original_item_data = DataHandler.purchase_data[item_id]
 	nameEntry.text = original_item_data['item_name']
 	priceEntry.text = original_item_data['item_price']
 	linkEntry.text = original_item_data['item_link']
@@ -117,9 +118,13 @@ func loadItemData(item_id):
 		if tagOptions.get_item_text(tag) == original_item_data['item_tag']:
 			tagUpdated(tag)
 			tagOptions.select(tag)
-	loadTimeSince()
+	loadDatePurchased()
 	changes_made = false
-	togglePurchaseUpdate(true)
+	var link_valid = await validateLink(linkEntry.text)
+	print("LINK VALID: ", link_valid)
+	linkButton.disabled = not link_valid
+	linkLabel.add_theme_color_override("font_color", Color("6d8577") if link_valid else Color("2e3334"))
+	#togglePurchaseUpdate(true)
 	#changeUpdateButton()
 	
 func backPressed():
@@ -183,7 +188,7 @@ func changePurchaseButton():
 		purchaseButton.disabled = true
 		
 func resetData():
-	loadItemData(original_item_data['item_name'])
+	loadPurchaseData(original_item_data['item_name'])
 
 func toggleTimeLabel():
 	if showing_date: loadTimeSince()
@@ -209,6 +214,10 @@ func loadTimeSince():
 	else:
 		timeLabel.text = "TIME IN CART\n[color=#9c4827]%s Days - %s Hours[/color]" % [days, hours]
 	showing_date = false
+
+func loadDatePurchased():
+	var purchased_date = Time.get_datetime_dict_from_unix_time(original_item_data['purchase_date'])
+	timeLabel.text = "DATE PURCHASED\n%s/%s/%s" % [purchased_date['month'], purchased_date['day'], purchased_date['year']]
 
 func trashPressed():
 	YesOrNo.loadMenu()
