@@ -22,6 +22,7 @@ config/icon="uid://ctlcybl8nscxd"
 
 DataHandler="*res://scripts/data_handler.gd"
 YesOrNo="*res://scenes/popup_menu.tscn"
+WarningMenu="*res://scenes/warning_menu.tscn"
 
 [display]
 

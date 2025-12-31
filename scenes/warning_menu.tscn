@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://caugk0f77ukxm"]
+[gd_scene load_steps=6 format=3 uid="uid://t8pbprbni3t1"]
 
-[ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_1s2af"]
-[ext_resource type="Script" uid="uid://dvyvfy8q3qhvd" path="res://scripts/popup_menu.gd" id="1_pstsw"]
-[ext_resource type="Texture2D" uid="uid://dqw7otqw8krx5" path="res://assets/check.png" id="2_lhx56"]
-[ext_resource type="Texture2D" uid="uid://dpbd4uvrjrj6g" path="res://assets/cancel.png" id="4_35uia"]
+[ext_resource type="Script" uid="uid://b64uqftcce557" path="res://scripts/warning_menu.gd" id="1_5k4te"]
+[ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="2_fkdn6"]
+[ext_resource type="Texture2D" uid="uid://dqw7otqw8krx5" path="res://assets/check.png" id="3_c8gae"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1s2af"]
 bg_color = Color(0.18039216, 0.2, 0.20392157, 0.5019608)
@@ -16,8 +15,8 @@ border_width_right = 16
 border_width_bottom = 16
 border_color = Color(0.8, 0.7294118, 0.60784316, 1)
 
-[node name="popupMenu" type="CanvasLayer"]
-script = ExtResource("1_pstsw")
+[node name="warningMenu" type="CanvasLayer"]
+script = ExtResource("1_5k4te")
 
 [node name="popupBG" type="Panel" parent="."]
 anchors_preset = 15
@@ -42,7 +41,7 @@ offset_right = 180.0
 offset_bottom = 195.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_1s2af")
+theme = ExtResource("2_fkdn6")
 theme_override_styles/panel = SubResource("StyleBoxFlat_7cvyo")
 
 [node name="popupMargin" type="MarginContainer" parent="popupPanel"]
@@ -60,14 +59,13 @@ theme_override_constants/margin_bottom = 32
 [node name="popupVbox" type="VBoxContainer" parent="popupPanel/popupMargin"]
 layout_mode = 2
 
-[node name="popupLabel" type="Label" parent="popupPanel/popupMargin/popupVbox"]
+[node name="warningLabel" type="Label" parent="popupPanel/popupMargin/popupVbox"]
 layout_mode = 2
 size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
+size_flags_stretch_ratio = 4.0
 theme_type_variation = &"nameLabel"
-text = "ARE YOU
-SURE"
 horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="popupButtons" type="HBoxContainer" parent="popupPanel/popupMargin/popupVbox"]
 layout_mode = 2
@@ -77,14 +75,6 @@ size_flags_vertical = 3
 modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-texture_normal = ExtResource("2_lhx56")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="noButton" type="TextureButton" parent="popupPanel/popupMargin/popupVbox/popupButtons"]
-modulate = Color(0.6117647, 0.28235295, 0.15294118, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-texture_normal = ExtResource("4_35uia")
+texture_normal = ExtResource("3_c8gae")
 ignore_texture_size = true
 stretch_mode = 5

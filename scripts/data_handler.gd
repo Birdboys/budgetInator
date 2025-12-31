@@ -1,22 +1,67 @@
 extends Node
 
-@onready var item_data := {}
-@onready var tag_data := {
-	"No Tag": {"tag_name": "No Tag", "tag_color": Color.TRANSPARENT}
+const DEFAULT_ITEM_DATA := {}
+const DEFAULT_TAG_DATA := {
+	"No Tag": {"tag_name": "No Tag", "tag_color": "ffffff00"}
 }
 
+@onready var item_data := {}
+@onready var tag_data := {}
+@onready var save_data_path := "user://user_data.json"
+
+func _ready() -> void:
+	loadData()
+	print(Color.TRANSPARENT.to_html())
+	
+func loadData():
+	if not FileAccess.file_exists(save_data_path):
+		createNewSaveData()
+	loadOldSaveData()
+
+func createNewSaveData():
+	var new_save_file = FileAccess.open(save_data_path, FileAccess.WRITE)
+	var save_data = {"items": DEFAULT_ITEM_DATA, "tags": DEFAULT_TAG_DATA}
+	var save_data_json = JSON.stringify(save_data)
+	new_save_file.store_line(save_data_json)
+	new_save_file.close()
+	return
+	
+func loadOldSaveData():
+	var old_save_file := FileAccess.open(save_data_path, FileAccess.READ)
+	var old_save_data = JSON.parse_string(old_save_file.get_as_text())
+	item_data = old_save_data['items']
+	tag_data = old_save_data['tags']
+	for tag in tag_data:
+		tag_data[tag]['tag_color'] = Color(tag_data[tag]['tag_color'])
+	old_save_file.close()
+	
+func saveData():
+	var old_save_file := FileAccess.open(save_data_path, FileAccess.WRITE)
+	var new_save_data = {"items":item_data.duplicate_deep(), "tags":tag_data.duplicate_deep()}
+	print("NEW SAVE DATA: ", new_save_data)
+	for tag in new_save_data['tags']:
+		new_save_data['tags'][tag]['tag_color'] = new_save_data['tags'][tag]['tag_color'].to_html()
+	var new_save_data_json := JSON.stringify(new_save_data)
+	
+	old_save_file.store_line(new_save_data_json)
+	old_save_file.close()
+	
 func addItem(item):
 	item_data[item.item_name] = item
+	saveData()
 
 func updateItem(original_name, item):
 	item_data.erase(original_name)
 	item_data[item['item_name']] = item
+	saveData()
 
 func deleteItem(item):
 	item_data.erase(item)
+	saveData()
 
 func addTag(tag):
 	tag_data[tag.tag_name] = tag
+	saveData()
 
 func updateTag(original_name, tag):
 	tag_data.erase(original_name)
@@ -24,12 +69,14 @@ func updateTag(original_name, tag):
 	for item in item_data:
 		if item_data[item]['item_tag'] == original_name:
 			item_data[item]['item_tag'] = tag['tag_name']
+	saveData()
 
 func deleteTag(tag):
 	tag_data.erase(tag)
 	for item in item_data:
 		if item_data[item]['item_tag'] == tag:
 			item_data[item]['item_tag'] = "No Tag"
+	saveData()
 
 func checkDuplicateItem(item_name, original_item_name=""):
 	if item_name == original_item_name and original_item_name != "": return true
@@ -42,7 +89,9 @@ func checkDuplicateTag(tag_name, tag_color, original_tag_name="", original_tag_c
 	var is_duplicate := false
 	if tag_name in tag_data: 
 		is_duplicate = true
+	#print(tag_data)
 	for tag in tag_data:
+		print(tag_color, " ", tag_data[tag]['tag_color'])
 		if tag_color == tag_data[tag]['tag_color']:
 			is_duplicate = true
 	return not is_duplicate

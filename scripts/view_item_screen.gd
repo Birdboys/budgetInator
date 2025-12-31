@@ -73,16 +73,6 @@ func dataUpdated(_text):
 	linkButton.disabled = not link_valid
 	linkLabel.add_theme_color_override("font_color", Color("6d8577") if link_valid else Color("2e3334"))
 	
-func submitItem():
-	if (nameEntry.text != "" and priceEntry.text != ""):
-		var new_item = {}
-		new_item['item_name'] = nameEntry.text
-		new_item['item_price'] = priceEntry.text
-		new_item['item_link'] = linkEntry.text
-		new_item['item_tag'] = tagOptions.text
-		new_item['item_date'] = int(Time.get_unix_time_from_system())
-		DataHandler.addItem(new_item)
-	emit_signal("exit")
 
 func loadMenu():
 	visible = true
@@ -135,6 +125,9 @@ func backPressed():
 	emit_signal("exit")
 
 func updatePressed():
+	if not priceEntry.text.is_valid_int():
+		WarningMenu.loadMenu("Price must be valid number")
+		return
 	YesOrNo.loadMenu()
 	var make_choice = await YesOrNo.choice
 	print("MAKE CHOICE ", make_choice)
@@ -169,9 +162,10 @@ func togglePurchaseUpdate(purchase):
 	changeUpdateButton()
 	
 func changeUpdateButton():
-	if changes_made and is_unique:
-		updateButton.disabled = false
+	if changes_made:
 		resetButton.visible = true
+		updateButton.disabled = not is_unique
+		
 	else:
 		updateButton.disabled = true
 		resetButton.visible = false
