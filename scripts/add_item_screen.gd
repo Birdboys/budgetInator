@@ -48,7 +48,7 @@ func submitItem():
 	new_item['item_price'] = priceEntry.text
 	new_item['item_link'] = linkEntry.text
 	new_item['item_tag'] = tagOptions.text
-	new_item['item_date'] = int(Time.get_unix_time_from_system())
+	new_item['item_date'] = int(Time.get_unix_time_from_system()) + DataHandler.time_zone_offset
 	DataHandler.addItem(new_item)
 	emit_signal("exit")
 

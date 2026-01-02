@@ -11,9 +11,11 @@ const DEFAULT_PURCHASE_DATA := {}
 @onready var purchase_data := {}
 @onready var save_data_path := "user://user_data.json"
 
+var time_zone_offset := 0
+
 func _ready() -> void:
 	loadData()
-	print(Color.TRANSPARENT.to_html())
+	time_zone_offset = Time.get_time_zone_from_system()['bias']*60
 	
 func loadData():
 	if not FileAccess.file_exists(save_data_path):

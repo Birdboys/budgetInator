@@ -199,7 +199,7 @@ func loadTimeAdded():
 	showing_date = true
 	
 func loadTimeSince():
-	var current_time = Time.get_unix_time_from_system() +90000 * 7
+	var current_time = Time.get_unix_time_from_system() + DataHandler.time_zone_offset
 	var added_time = original_item_data['item_date']
 	var time_diff = current_time-added_time
 	var days = floori(time_diff/86400.0)
