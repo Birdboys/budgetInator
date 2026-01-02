@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://dwxytc7an8a3e"]
+[gd_scene load_steps=31 format=3 uid="uid://dwxytc7an8a3e"]
 
 [ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_7fvvs"]
 [ext_resource type="Script" uid="uid://j6ej6nxijbfn" path="res://scripts/main_screen.gd" id="2_kusfh"]
@@ -37,6 +37,10 @@ border_color = Color(0.9254902, 0.8745098, 0.7490196, 1)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ihpp7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uxhme"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rvdwh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_21wo0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_amnco"]
 
@@ -790,16 +794,6 @@ flat = true
 layout_mode = 2
 alignment = 1
 
-[node name="trashButton" type="TextureButton" parent="vBox/viewItemScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
-modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
-texture_normal = ExtResource("11_vikvq")
-ignore_texture_size = true
-stretch_mode = 5
-
 [node name="resetButton" type="TextureButton" parent="vBox/viewItemScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
 visible = false
 modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
@@ -815,6 +809,17 @@ stretch_mode = 5
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_rvdwh")
+
+[node name="trashButton" type="TextureButton" parent="vBox/viewItemScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+texture_normal = ExtResource("11_vikvq")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="bottomButtons" type="HBoxContainer" parent="vBox/viewItemScreen/viewVbox"]
 layout_mode = 2
@@ -1067,7 +1072,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"dataEntry"
 placeholder_text = "No link"
-editable = false
 virtual_keyboard_show_on_focus = false
 deselect_on_focus_loss_enabled = false
 
@@ -1094,7 +1098,23 @@ flat = true
 layout_mode = 2
 alignment = 1
 
+[node name="resetButton" type="TextureButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("11_uxhme")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="resetSpacer" type="Panel" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_21wo0")
+
 [node name="trashButton" type="TextureButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
+visible = false
 modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -1104,28 +1124,11 @@ texture_normal = ExtResource("11_vikvq")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="resetButton" type="TextureButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
-visible = false
-modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
-custom_minimum_size = Vector2(96, 96)
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 10
-texture_normal = ExtResource("11_uxhme")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="resetSpacer" type="Panel" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/viewButtons"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-
 [node name="bottomButtons" type="HBoxContainer" parent="vBox/viewPurchaseScreen/viewVbox"]
 layout_mode = 2
 theme_override_constants/separation = 8
 
 [node name="updateButton" type="Button" parent="vBox/viewPurchaseScreen/viewVbox/bottomButtons"]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"submitButton"

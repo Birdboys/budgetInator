@@ -27,14 +27,14 @@ signal exit
 func _ready() -> void:
 	#nameEntry.text_changed.connect(dataUpdated)
 	#priceEntry.text_changed.connect(dataUpdated)
-	#linkEntry.text_changed.connect(dataUpdated)
+	linkEntry.text_changed.connect(dataUpdated)
 	tagOptions.item_selected.connect(tagUpdated)
 	
 	linkButton.pressed.connect(linkPressed)
-	#updateButton.pressed.connect(updatePressed)
+	updateButton.pressed.connect(updatePressed)
 	#purchaseButton.pressed.connect(purchasePressed)
 	backButton.pressed.connect(backPressed)
-	#resetButton.pressed.connect(resetData)
+	resetButton.pressed.connect(resetData)
 	#trashButton.pressed.connect(trashPressed)
 	#timeButton.pressed.connect(toggleTimeLabel)
 	pass
@@ -49,19 +49,15 @@ func tagUpdated(tag_id):
 	dataUpdated("")
 	
 func dataUpdated(_text):
-	return
 	if original_item_data == {}: 
 		changes_made = false
 		togglePurchaseUpdate(true)
 		return
-	is_unique = not DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
-	if nameEntry.text != original_item_data['item_name']: 
-		changes_made = true
-	elif priceEntry.text != original_item_data['item_price']:
-		changes_made = true
-	elif linkEntry.text != original_item_data['item_link']:
-		changes_made = true
-	elif tagOptions.get_item_text(tagOptions.get_selected_id()) != original_item_data['item_tag']:
+	#is_unique = not DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
+	print('original_item_link "%s"' % original_item_data['item_tag'])
+	print('new_item_link "%s"' % tagOptions.get_item_text(tagOptions.get_selected_id()))
+	if linkEntry.text != original_item_data['item_link']:
+		print("LINK CHANGED")
 		changes_made = true
 	else:
 		changes_made = false
@@ -87,11 +83,14 @@ func closeMenu():
 	clearText()
 	
 func loadTags():
+	tagOptions.add_item("No Tag")
 	for tag in DataHandler.tag_data:
-		tagOptions.add_item(DataHandler.tag_data[tag]["tag_name"])
+		if DataHandler.tag_data[tag]["tag_name"] != "No Tag":
+			tagOptions.add_item(DataHandler.tag_data[tag]["tag_name"])
 	tagOptions.select(0)
 	changeTagSelectColor(Color.html("ecdfbf"))
-
+	dataUpdated("")
+	
 func clearText():
 	nameEntry.clear()
 	priceEntry.clear()
@@ -125,7 +124,7 @@ func loadPurchaseData(item_id):
 	print("LINK VALID: ", link_valid)
 	linkButton.disabled = not link_valid
 	linkLabel.add_theme_color_override("font_color", Color("6d8577") if link_valid else Color("2e3334"))
-	#togglePurchaseUpdate(true)
+	togglePurchaseUpdate(true)
 	#changeUpdateButton()
 	
 func backPressed():
@@ -148,7 +147,8 @@ func updateData():
 	updated_item_data['item_link'] = linkEntry.text
 	updated_item_data['item_tag'] = tagOptions.text
 	updated_item_data['item_date'] = original_item_data['item_date']
-	DataHandler.updateItem(original_item_data['item_name'], updated_item_data)
+	updated_item_data['purchase_date'] = original_item_data['purchase_date']
+	DataHandler.updatePurchase(original_item_data['item_name'], updated_item_data)
 	emit_signal("exit")
 	
 func purchasePressed():
@@ -166,21 +166,20 @@ func purchaseItem():
 	emit_signal("exit")
 	
 func togglePurchaseUpdate(purchase):
-	purchaseButton.visible = purchase
+	#purchaseButton.visible = purchase
 	updateButton.visible = not purchase
-	changePurchaseButton()
+	#changePurchaseButton()
 	changeUpdateButton()
 	
 func changeUpdateButton():
 	if changes_made:
 		resetButton.visible = true
-		resetSpacer.visible = false
+		#resetSpacer.visible = false
 		updateButton.disabled = not is_unique
-		
 	else:
 		updateButton.disabled = true
 		resetButton.visible = false
-		resetSpacer.visible = true
+		#resetSpacer.visible = true
 		
 func changePurchaseButton():
 	if one_week_in_cart:

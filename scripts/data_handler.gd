@@ -90,7 +90,12 @@ func deleteTag(tag):
 func addPurchase(purchase):
 	purchase_data[purchase['item_name']] = purchase
 	saveData()
-	 
+	
+func updatePurchase(original_name, purchase):
+	purchase_data.erase(original_name)
+	purchase_data[purchase['item_name']] = purchase
+	saveData()
+
 func checkDuplicateItem(item_name, original_item_name=""):
 	if item_name == original_item_name:
 		return false
