@@ -78,6 +78,7 @@ func dataUpdated(_text):
 
 func loadMenu():
 	visible = true
+	trashButton.visible = false
 	togglePurchaseUpdate(true)
 	loadTags()
 

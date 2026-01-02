@@ -1014,6 +1014,7 @@ deselect_on_focus_loss_enabled = false
 [node name="tagOptions" type="OptionButton" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox"]
 layout_mode = 2
 theme_type_variation = &"labelEntry"
+disabled = true
 
 [node name="tagRect" type="ColorRect" parent="vBox/viewPurchaseScreen/viewVbox/dataMargin/dataVbox/tagOptions"]
 modulate = Color(1, 1, 1, 0)

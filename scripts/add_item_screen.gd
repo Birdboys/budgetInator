@@ -71,8 +71,10 @@ func closeMenu():
 	clearText()
 	
 func loadTags():
+	tagOptions.add_item("No Tag")
 	for tag in DataHandler.tag_data:
-		tagOptions.add_item(DataHandler.tag_data[tag]["tag_name"])
+		if DataHandler.tag_data[tag]["tag_name"] != "No Tag":
+			tagOptions.add_item(DataHandler.tag_data[tag]["tag_name"])
 	tagOptions.select(0)
 	changeTagSelectColor(Color.html("ecdfbf"))
 
