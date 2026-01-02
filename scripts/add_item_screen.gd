@@ -36,7 +36,7 @@ func dataUpdated(_text):
 	#submitButton.text = "SUBMIT ITEM" if (nameEntry.text != "" and priceEntry.text != "" and is_unique) else "CANCEL"
 	
 func submitItem():
-	if not DataHandler.checkDuplicateItem(nameEntry.text):
+	if DataHandler.checkDuplicateItem(nameEntry.text):
 		WarningMenu.loadMenu("Item already exists")
 		return
 	if not priceEntry.text.is_valid_int():

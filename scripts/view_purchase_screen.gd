@@ -54,7 +54,7 @@ func dataUpdated(_text):
 		changes_made = false
 		togglePurchaseUpdate(true)
 		return
-	is_unique = DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
+	is_unique = not DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
 	if nameEntry.text != original_item_data['item_name']: 
 		changes_made = true
 	elif priceEntry.text != original_item_data['item_price']:

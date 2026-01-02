@@ -92,22 +92,38 @@ func addPurchase(purchase):
 	saveData()
 	 
 func checkDuplicateItem(item_name, original_item_name=""):
-	if item_name == original_item_name and original_item_name != "": return true
-	return not (item_name in item_data or item_name in purchase_data)
+	if item_name == original_item_name:
+		return false
+	if item_name in item_data or item_name in purchase_data:
+		return true
+	return false
+	#return item_name == original_item_name or not (item_name in item_data or item_name in purchase_data)
+	#if item_name == original_item_name and original_item_name != "": return true
+	#return not (item_name in item_data or item_name in purchase_data)
+	#RETURNS TRUE IF ITEM IS DUPLICATE
 
 func checkDuplicateTag(tag_name, tag_color, original_tag_name="", original_tag_color=Color.TRANSPARENT):
-	if tag_name == original_tag_name and original_tag_name == "" and tag_color == original_tag_color and original_tag_color != Color.TRANSPARENT: 
-		return true
-
-	var is_duplicate := false
-	if tag_name in tag_data: 
-		is_duplicate = true
-	#print(tag_data)
-	for tag in tag_data:
-		print(tag_color, " ", tag_data[tag]['tag_color'])
-		if tag_color == tag_data[tag]['tag_color']:
-			is_duplicate = true
-	return not is_duplicate
+	var tag_changed = tag_name != original_tag_name
+	var color_changed = tag_color != original_tag_color
+	var tag_exists = tag_name in tag_data
+	var color_exists = false
+	for t in tag_data:
+		if tag_data[t]['tag_color'] == tag_color:
+			color_exists = true
+	
+	if (not tag_changed) and (not color_changed): #if nothing has changed
+		print("A")
+		return true #duplicate
+	if tag_changed and not color_changed: #if tag has changed and color hasn't
+		print("B")
+		return tag_exists #if tag exists, its a duplicate
+	if color_changed and not tag_changed: #if color has changed and tag hasn't
+		print("C")
+		return color_exists
+	if color_changed and tag_changed: #if both have changed
+		print("D")
+		return tag_exists or color_exists
+		
 
 func getItemsByDate():
 	var date_array = []

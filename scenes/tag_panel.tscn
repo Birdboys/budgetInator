@@ -1,6 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b5o7la2yoohem"]
+[gd_scene load_steps=8 format=3 uid="uid://b5o7la2yoohem"]
 
 [ext_resource type="Script" uid="uid://cbphs4y7wkoli" path="res://scripts/tag_panel.gd" id="1_nsfro"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nsfro"]
+color = Color(0, 0, 0, 0)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_7gh1m"]
 color = Color(0, 0, 0, 0)
@@ -27,6 +30,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
+
+[node name="frontSeparator" type="VSeparator" parent="tagHbox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxLine_nsfro")
 
 [node name="nameLabel" type="Label" parent="tagHbox"]
 layout_mode = 2

@@ -34,7 +34,7 @@ func dataUpdated(_text):
 		updateButton.disabled = true
 		return
 	
-	is_unique = DataHandler.checkDuplicateTag(nameEntry.text, colorRect.modulate, original_tag_data['tag_name'], original_tag_data['tag_color'])
+	is_unique = not DataHandler.checkDuplicateTag(nameEntry.text, colorRect.modulate, original_tag_data['tag_name'], original_tag_data['tag_color'])
 	if colorRect.modulate != original_tag_data['tag_color']:
 		changes_made = true
 	elif nameEntry.text != original_tag_data['tag_name']:

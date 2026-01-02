@@ -51,7 +51,7 @@ func submitItem():
 	if not valid_color:
 		WarningMenu.loadMenu("Color not valid")
 		return
-	if not DataHandler.checkDuplicateTag(nameEntry.text, colorRect.modulate):
+	if DataHandler.checkDuplicateTag(nameEntry.text, colorRect.modulate):
 		WarningMenu.loadMenu("Name and color must be unique")
 		return
 		

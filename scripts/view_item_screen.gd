@@ -53,7 +53,7 @@ func dataUpdated(_text):
 		changes_made = false
 		togglePurchaseUpdate(true)
 		return
-	is_unique = DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
+	is_unique = not DataHandler.checkDuplicateItem(nameEntry.text, original_item_data['item_name'])
 	if nameEntry.text != original_item_data['item_name']: 
 		changes_made = true
 	elif priceEntry.text != original_item_data['item_price']:
@@ -170,7 +170,6 @@ func changeUpdateButton():
 		resetButton.visible = true
 		resetSpacer.visible = false
 		updateButton.disabled = not (is_unique and priceEntry.text != "" and nameEntry.text != "")
-		
 	else:
 		updateButton.disabled = true
 		resetButton.visible = false
@@ -198,11 +197,11 @@ func loadTimeAdded():
 	showing_date = true
 	
 func loadTimeSince():
-	var current_time = Time.get_unix_time_from_system() + 90000*7
-	var added_time = float(Time.get_unix_time_from_datetime_dict(Time.get_datetime_dict_from_system(original_item_data['item_date'])))
+	var current_time = Time.get_unix_time_from_system()
+	var added_time = original_item_data['item_date']
 	var time_diff = current_time-added_time
 	var days = floori(time_diff/86400.0)
-	var hours = floori((time_diff-(days*86400.0))/3600.0)#int(fmod(time_diff-(days*86400), 3600)) #floori(time, 86400)
+	var hours = floori((time_diff-(days*86400.0))/3600.0)
 	one_week_in_cart = days >= 7
 	if one_week_in_cart:
 		timeLabel.text = "TIME IN CART\n[color=#6d8577]%s Days - %s Hours[/color]" % [days, hours]
