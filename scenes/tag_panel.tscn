@@ -1,5 +1,6 @@
-[gd_scene load_steps=8 format=3 uid="uid://b5o7la2yoohem"]
+[gd_scene load_steps=9 format=3 uid="uid://b5o7la2yoohem"]
 
+[ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_ag2g4"]
 [ext_resource type="Script" uid="uid://cbphs4y7wkoli" path="res://scripts/tag_panel.gd" id="1_nsfro"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_nsfro"]
@@ -19,6 +20,7 @@ color = Color(0, 0, 0, 0)
 [node name="tagPanel" type="Panel"]
 custom_minimum_size = Vector2(0, 128)
 mouse_filter = 1
+theme = ExtResource("1_ag2g4")
 theme_type_variation = &"pressed"
 script = ExtResource("1_nsfro")
 
@@ -43,6 +45,16 @@ size_flags_vertical = 1
 size_flags_stretch_ratio = 3.0
 theme_type_variation = &"nameLabel"
 text = "Professional"
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 3
+
+[node name="countLabel" type="Label" parent="tagHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_type_variation = &"priceLabel"
+horizontal_alignment = 2
 vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 3

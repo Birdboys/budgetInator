@@ -108,6 +108,7 @@ func updateData():
 	var updated_tag_data := {}
 	updated_tag_data['tag_name'] = nameEntry.text
 	updated_tag_data['tag_color'] = colorRect.modulate
+	updated_tag_data['tag_date'] = original_tag_data['tag_date']
 	DataHandler.updateTag(original_tag_data['tag_name'], updated_tag_data)
 	emit_signal("exit")
 

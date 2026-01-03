@@ -58,6 +58,7 @@ func submitItem():
 	var new_tag = {}
 	new_tag['tag_name'] = nameEntry.text
 	new_tag['tag_color'] = colorRect.modulate
+	new_tag['tag_date'] = int(Time.get_unix_time_from_system()) + DataHandler.time_zone_offset
 	DataHandler.addTag(new_tag)
 	emit_signal("exit")
 

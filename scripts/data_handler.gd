@@ -14,8 +14,8 @@ const DEFAULT_PURCHASE_DATA := {}
 var time_zone_offset := 0
 
 func _ready() -> void:
-	loadData()
 	time_zone_offset = Time.get_time_zone_from_system()['bias']*60
+	loadData()
 	
 func loadData():
 	if not FileAccess.file_exists(save_data_path):
@@ -39,6 +39,12 @@ func loadOldSaveData():
 	for tag in tag_data:
 		tag_data[tag]['tag_color'] = Color(tag_data[tag]['tag_color'])
 	old_save_file.close()
+	cleanLoadedData()
+	
+func cleanLoadedData():
+	for tag in tag_data:
+		if "tag_date" not in tag_data[tag]:
+			tag_data[tag]['tag_date'] = int(Time.get_unix_time_from_system()) + DataHandler.time_zone_offset
 	
 func saveData():
 	var old_save_file := FileAccess.open(save_data_path, FileAccess.WRITE)
@@ -223,6 +229,9 @@ func getTotalPurchasePrice():
 	for item in purchase_data:
 		price += int(purchase_data[item]['item_price'])
 	return str(price)
+
+func getTotalTags():
+	return str(len(tag_data.values()))
 	
 func getTotalPurchases():
 	return str(len(purchase_data.values()))
@@ -230,3 +239,30 @@ func getTotalPurchases():
 func resetAllData():
 	createNewSaveData()
 	loadOldSaveData()
+
+func getCountItemsWithTag(tag):
+	var num_tags := 0
+	for item in item_data:
+		if item_data[item]['item_tag'] == tag:
+			num_tags += 1
+	return num_tags
+
+func getTagsByDate():
+	var date_array = []
+	for tag in tag_data:
+		date_array.append([tag, tag_data[tag]['tag_date']])
+	date_array.sort_custom(sortByDate)
+	return date_array.map(func(element): return element[0])
+
+func getTagsByName():
+	var tag_names = tag_data.keys().duplicate()
+	tag_names.sort()
+	return tag_names
+
+func getTagsByNumItems():
+	var tag_array = []
+	for tag in tag_data:
+		tag_array.append([tag, getCountItemsWithTag(tag)])
+	tag_array.sort_custom(sortByPrice)
+	return tag_array.map(func(element): return element[0])
+	

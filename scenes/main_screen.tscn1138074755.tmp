@@ -497,9 +497,9 @@ popup/item_0/text = "LAST UPDATED"
 popup/item_0/id = 0
 popup/item_1/text = "DATE ADDED"
 popup/item_1/id = 1
-popup/item_2/text = "NAME"
+popup/item_2/text = "NUM ITEMS"
 popup/item_2/id = 2
-popup/item_3/text = "NUMBER OF ITEMS"
+popup/item_3/text = "NAME"
 popup/item_3/id = 3
 
 [node name="orderMargins" type="MarginContainer" parent="vBox/tagScreen/tagVBox/optionsPanel/optionsMargins/optionsVbox"]
@@ -538,20 +538,19 @@ flip_v = true
 [node name="tagsVbox" type="VBoxContainer" parent="vBox/tagScreen/tagVBox/optionsPanel/optionsMargins/optionsVbox"]
 layout_mode = 2
 size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="tagsLabel" type="Label" parent="vBox/tagScreen/tagVBox/optionsPanel/optionsMargins/optionsVbox/tagsVbox"]
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme_type_variation = &"priceLabel"
 theme_override_font_sizes/font_size = 48
-text = "TOTAL TAGS"
+text = "TOTAL ITEMS"
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="totalTagsLabel" type="Label" parent="vBox/tagScreen/tagVBox/optionsPanel/optionsMargins/optionsVbox/tagsVbox"]
 layout_mode = 2
-size_flags_vertical = 1
+size_flags_vertical = 3
 theme_type_variation = &"priceLabel"
 theme_override_font_sizes/font_size = 48
 horizontal_alignment = 1
