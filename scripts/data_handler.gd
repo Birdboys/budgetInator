@@ -5,10 +5,12 @@ const DEFAULT_TAG_DATA := {
 	"No Tag": {"tag_name": "No Tag", "tag_color": "ffffff00"}
 }
 const DEFAULT_PURCHASE_DATA := {}
+const DEFAULT_VICE_DATA := {}
 
 @onready var item_data := {}
 @onready var tag_data := {}
 @onready var purchase_data := {}
+@onready var vice_data := {}
 @onready var save_data_path := "user://user_data.json"
 
 var time_zone_offset := 0
@@ -24,7 +26,7 @@ func loadData():
 
 func createNewSaveData():
 	var new_save_file = FileAccess.open(save_data_path, FileAccess.WRITE)
-	var save_data = {"items": DEFAULT_ITEM_DATA, "tags": DEFAULT_TAG_DATA, "purchases": DEFAULT_PURCHASE_DATA}
+	var save_data = {"items": DEFAULT_ITEM_DATA, "tags": DEFAULT_TAG_DATA, "purchases": DEFAULT_PURCHASE_DATA, "vices":DEFAULT_VICE_DATA}
 	var save_data_json = JSON.stringify(save_data)
 	new_save_file.store_line(save_data_json)
 	new_save_file.close()
@@ -36,6 +38,10 @@ func loadOldSaveData():
 	item_data = old_save_data['items']
 	tag_data = old_save_data['tags']
 	purchase_data = old_save_data['purchases']
+	if "vices" in old_save_data:
+		vice_data = old_save_data['vices']
+	else:
+		vice_data = DEFAULT_VICE_DATA 
 	for tag in tag_data:
 		tag_data[tag]['tag_color'] = Color(tag_data[tag]['tag_color'])
 	old_save_file.close()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dwxytc7an8a3e"]
+[gd_scene load_steps=33 format=3 uid="uid://dwxytc7an8a3e"]
 
 [ext_resource type="Theme" uid="uid://cer08boju3mso" path="res://assets/themes/budget_theme.tres" id="1_7fvvs"]
 [ext_resource type="Script" uid="uid://j6ej6nxijbfn" path="res://scripts/main_screen.gd" id="2_kusfh"]
@@ -20,8 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://bleu62rvpl0mu" path="res://assets/reset.png" id="11_uxhme"]
 [ext_resource type="Texture2D" uid="uid://dcy583if6rqjq" path="res://assets/trash.png" id="11_vikvq"]
 [ext_resource type="Script" uid="uid://3o57a37ehf1e" path="res://scripts/view_tag_screen.gd" id="13_30ndx"]
+[ext_resource type="Script" uid="uid://cykkfsqbdtjr8" path="res://scripts/vices_screen.gd" id="13_rvdwh"]
 [ext_resource type="Script" uid="uid://sp3qdccbn5ed" path="res://scripts/view_purchase_screen.gd" id="18_6lq5t"]
 [ext_resource type="Texture2D" uid="uid://ctowr861pkdci" path="res://assets/list.png" id="21_ihpp7"]
+[ext_resource type="Texture2D" uid="uid://cdy32n63fs5ie" path="res://assets/bag.png" id="23_21wo0"]
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_23dc1"]
 color = Color(0, 0, 0, 0)
@@ -565,6 +567,161 @@ size_flags_horizontal = 8
 size_flags_vertical = 8
 
 [node name="addTagButton" type="TextureButton" parent="vBox/tagScreen/addMargin"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_23dc1")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="vicesScreen" type="MarginContainer" parent="vBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 9.0
+script = ExtResource("13_rvdwh")
+
+[node name="viceVBox" type="VBoxContainer" parent="vBox/vicesScreen"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="titleLabel" type="Label" parent="vBox/vicesScreen/viceVBox"]
+layout_mode = 2
+theme_type_variation = &"nameLabel"
+theme_override_font_sizes/font_size = 96
+text = "YOUR VICES"
+horizontal_alignment = 1
+
+[node name="vicesScroll" type="ScrollContainer" parent="vBox/vicesScreen/viceVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="vicesBox" type="VBoxContainer" parent="vBox/vicesScreen/viceVBox/vicesScroll"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="tagPanel" parent="vBox/vicesScreen/viceVBox/vicesScroll/vicesBox" instance=ExtResource("7_352yk")]
+layout_mode = 2
+
+[node name="tagPanel2" parent="vBox/vicesScreen/viceVBox/vicesScroll/vicesBox" instance=ExtResource("7_352yk")]
+layout_mode = 2
+
+[node name="loadOptionsButton" type="TextureButton" parent="vBox/vicesScreen/viceVBox"]
+custom_minimum_size = Vector2(128, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_type_variation = &"submitButton"
+texture_normal = ExtResource("6_rjk0d")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="optionsPanel" type="Panel" parent="vBox/vicesScreen/viceVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_rjk0d")
+
+[node name="optionsMargins" type="MarginContainer" parent="vBox/vicesScreen/viceVBox/optionsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="optionsVbox" type="VBoxContainer" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="sortLabel" type="Label" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+text = "SORT BY"
+horizontal_alignment = 1
+
+[node name="optionsDropdown" type="OptionButton" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+theme = ExtResource("7_c7dat")
+selected = 0
+item_count = 4
+popup/item_0/text = "LAST UPDATED"
+popup/item_0/id = 0
+popup/item_1/text = "DATE ADDED"
+popup/item_1/id = 1
+popup/item_2/text = "NAME"
+popup/item_2/id = 2
+popup/item_3/text = "NUMBER OF ITEMS"
+popup/item_3/id = 3
+
+[node name="orderMargins" type="MarginContainer" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox"]
+custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme = ExtResource("1_7fvvs")
+theme_override_constants/margin_left = 128
+theme_override_constants/margin_right = 128
+
+[node name="orderHbox" type="HBoxContainer" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox/orderMargins"]
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 1
+
+[node name="ascending" type="TextureButton" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox"]
+modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("8_ihpp7")
+texture_normal = ExtResource("8_3qgpa")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="descending" type="TextureButton" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox"]
+modulate = Color(0.9254902, 0.8745098, 0.7490196, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("8_ihpp7")
+texture_normal = ExtResource("8_3qgpa")
+ignore_texture_size = true
+stretch_mode = 5
+flip_v = true
+
+[node name="tagsVbox" type="VBoxContainer" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="tagsLabel" type="Label" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox/tagsVbox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+text = "TOTAL TAGS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="totalTagsLabel" type="Label" parent="vBox/vicesScreen/viceVBox/optionsPanel/optionsMargins/optionsVbox/tagsVbox"]
+layout_mode = 2
+size_flags_vertical = 1
+theme_type_variation = &"priceLabel"
+theme_override_font_sizes/font_size = 48
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="addMargin" type="MarginContainer" parent="vBox/vicesScreen"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+
+[node name="addViceButton" type="TextureButton" parent="vBox/vicesScreen/addMargin"]
 modulate = Color(0.42745098, 0.52156866, 0.46666667, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -1283,6 +1440,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_type_variation = &"empty"
 
+[node name="vicesPanel" type="Panel" parent="vBox/bottomPanel/bgHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"empty"
+
 [node name="buttonHbox" type="HBoxContainer" parent="vBox/bottomPanel"]
 layout_mode = 1
 anchors_preset = 15
@@ -1316,5 +1478,14 @@ size_flags_horizontal = 3
 toggle_mode = true
 button_group = ExtResource("4_il54y")
 texture_normal = ExtResource("21_ihpp7")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="vicesButton" type="TextureButton" parent="vBox/bottomPanel/buttonHbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+toggle_mode = true
+button_group = ExtResource("4_il54y")
+texture_normal = ExtResource("23_21wo0")
 ignore_texture_size = true
 stretch_mode = 5
