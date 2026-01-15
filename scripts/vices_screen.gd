@@ -9,7 +9,7 @@ extends MarginContainer
 @onready var ascendingButton := $viceVBox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox/ascending
 @onready var descendingButton := $viceVBox/optionsPanel/optionsMargins/optionsVbox/orderMargins/orderHbox/descending
 
-@onready var tagPanel = preload("res://scenes/tag_panel.tscn")
+@onready var vicePanel = preload("res://scenes/vice_panel.tscn")
 
 var options_open := false
 var sorting_option = 0
@@ -25,7 +25,8 @@ func _ready() -> void:
 	
 func loadMenu():
 	closeOptionsPanel()
-	#clearTags()
+	clearVices()
+	loadVices(sorting_option, ascending)
 	#loadTags(sorting_option, ascending)
 	#totalTagsLabel.text = DataHandler.getTotalTags()
 	visible = true
@@ -54,7 +55,20 @@ func loadTags(sort, asc=true):
 		##tags.add_child(new_tag)
 		#new_tag.loadTag(DataHandler.tag_data[tag])
 		##new_tag.tag_pressed.connect(viewTag)
-		
+
+func loadVices(sort, asc):
+	clearVices()
+	var vice_list = []
+	match sort:
+		_:
+			vice_list = DataHandler.vice_data.keys()
+	if not asc: vice_list.reverse()
+	for vice in vice_list:
+		var new_vice = vicePanel.instantiate()
+		vices.add_child(new_vice)
+		new_vice.loadVice(DataHandler.vice_data[vice])
+		new_vice.vice_pressed.connect(viewVice)
+
 func clearVices():
 	for vice in vices.get_children():
 		vice.queue_free()
@@ -62,7 +76,6 @@ func clearVices():
 func viewVice(vice_id):
 	emit_signal("view_vice", vice_id)
 	
-
 func openOptionsPanel():
 	options_open = true
 	optionsPanel.visible = true

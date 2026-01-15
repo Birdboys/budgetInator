@@ -8,6 +8,7 @@ extends Control
 @onready var viewTagScreen := $vBox/viewTagScreen
 @onready var purchasedScreen := $vBox/purchasedScreen
 @onready var viewPurchaseScreen := $vBox/viewPurchaseScreen
+@onready var addViceScreen := $vBox/addViceScreen
 @onready var vicesScreen := $vBox/vicesScreen
 
 @onready var cartButton := $vBox/bottomPanel/buttonHbox/cartButton
@@ -16,6 +17,7 @@ extends Control
 @onready var vicesButton := $vBox/bottomPanel/buttonHbox/vicesButton
 @onready var addItemButton := $vBox/cartScreen/addMargin/addItemButton
 @onready var addTagButton := $vBox/tagScreen/addMargin/addTagButton
+@onready var addViceButton := $vBox/vicesScreen/addMargin/addViceButton
 @onready var cartPanel := $vBox/bottomPanel/bgHbox/cartPanel
 @onready var tagsPanel := $vBox/bottomPanel/bgHbox/tagsPanel
 @onready var purchasedPanel := $vBox/bottomPanel/bgHbox/purchasedPanel
@@ -31,21 +33,25 @@ extends Control
 	"view_tag": viewTagScreen,
 	"view_purchase": viewPurchaseScreen,
 	"vices": vicesScreen,
+	"add_vice": addViceScreen
 }
 var current_screen := ""
 
 func _ready() -> void:
 	addItemScreen.exit.connect(toggleScreen.bind("cart"))
 	addTagScreen.exit.connect(toggleScreen.bind("tags"))
+	addViceScreen.exit.connect(toggleScreen.bind("vices"))
 	viewItemScreen.exit.connect(toggleScreen.bind("cart"))
 	viewTagScreen.exit.connect(toggleScreen.bind("tags"))
 	viewPurchaseScreen.exit.connect(toggleScreen.bind("purchased"))
 	cartScreen.view_item.connect(viewItem)
 	tagScreen.view_tag.connect(viewTag)
 	purchasedScreen.view_purchase.connect(viewPurchase)
+	vicesScreen.view_vice.connect(viewVice)
 	
 	addItemButton.pressed.connect(toggleScreen.bind("add_item"))
 	addTagButton.pressed.connect(toggleScreen.bind("add_tag"))
+	addViceButton.pressed.connect(toggleScreen.bind("add_vice"))
 	cartButton.pressed.connect(toggleScreen.bind("cart"))
 	tagsButton.pressed.connect(toggleScreen.bind("tags"))
 	purchasedButton.pressed.connect(toggleScreen.bind("purchased"))
@@ -85,3 +91,6 @@ func viewTag(tag_id):
 func viewPurchase(item_id):
 	toggleScreen("view_purchase")
 	viewPurchaseScreen.loadPurchaseData(item_id)
+
+func viewVice(vice_id):
+	print("TRYING TO VIEW VICE:", vice_id)

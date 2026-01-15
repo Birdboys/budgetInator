@@ -41,7 +41,7 @@ func loadOldSaveData():
 	if "vices" in old_save_data:
 		vice_data = old_save_data['vices']
 	else:
-		vice_data = DEFAULT_VICE_DATA 
+		vice_data = DEFAULT_VICE_DATA.duplicate()
 	for tag in tag_data:
 		tag_data[tag]['tag_color'] = Color(tag_data[tag]['tag_color'])
 	old_save_file.close()
@@ -54,7 +54,7 @@ func cleanLoadedData():
 	
 func saveData():
 	var old_save_file := FileAccess.open(save_data_path, FileAccess.WRITE)
-	var new_save_data = {"items":item_data.duplicate_deep(), "tags":tag_data.duplicate_deep(), "purchases":purchase_data.duplicate_deep()}
+	var new_save_data = {"items":item_data.duplicate_deep(), "tags":tag_data.duplicate_deep(), "purchases":purchase_data.duplicate_deep(), "vices":vice_data.duplicate_deep()}
 	print("NEW SAVE DATA: ", new_save_data)
 	for tag in new_save_data['tags']:
 		new_save_data['tags'][tag]['tag_color'] = new_save_data['tags'][tag]['tag_color'].to_html()
@@ -109,7 +109,12 @@ func updatePurchase(original_name, purchase):
 	purchase_data.erase(original_name)
 	purchase_data[purchase['item_name']] = purchase
 	saveData()
-
+	
+func addVice(vice):
+	print(vice)
+	vice_data[vice['vice_name']] = vice
+	saveData()
+	
 func checkDuplicateItem(item_name, original_item_name=""):
 	if item_name == original_item_name:
 		return false
@@ -143,7 +148,9 @@ func checkDuplicateTag(tag_name, tag_color, original_tag_name="", original_tag_c
 		print("D")
 		return tag_exists or color_exists
 		
-
+func checkDuplicateVice(vice_name):
+	return vice_name in vice_data
+	
 func getItemsByDate():
 	var date_array = []
 	for item in item_data:
